@@ -4,12 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "npx tsx scripts/prebuild.ts",
     "build": "next build",
     "start": "next start",
     "test": "echo \"Error: no test specified\" && exit 0",
     "prepare": "husky",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "services:verify": "npx tsx scripts/verify-services.ts"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
@@ -24,6 +26,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv": "^17.2.3",
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
     "eslint-config-prettier": "^10.1.8",

@@ -32,6 +32,9 @@ export function getDatabaseService(): IDatabaseService {
   }
 
   dbInstance.validateConfig();
+
+  console.log(`Database service ${dbInstance.name} initialized successfully.`);
+
   return dbInstance;
 }
 
@@ -39,6 +42,7 @@ export function getAIService(): IAIService {
   if (aiInstance) return aiInstance;
 
   const provider = process.env.AI_PROVIDER;
+
   if (!provider) {
     throw new ServiceConfigError('AIFactory', 'AI_PROVIDER', 'ERR_AI_PROVIDER_MISSING');
   }
@@ -62,6 +66,9 @@ export function getAIService(): IAIService {
   }
 
   aiInstance.validateConfig();
+
+  console.log(`AI service ${aiInstance.name} initialized successfully.`);
+
   return aiInstance;
 }
 
@@ -69,6 +76,7 @@ export function getAuthService(): IAuthService {
   if (authInstance) return authInstance;
 
   const provider = process.env.AUTH_PROVIDER;
+
   if (!provider) {
     throw new ServiceConfigError('AuthFactory', 'AUTH_PROVIDER', 'ERR_AUTH_PROVIDER_MISSING');
   }
@@ -92,5 +100,8 @@ export function getAuthService(): IAuthService {
   }
 
   authInstance.validateConfig();
+
+  console.log(`Auth service ${authInstance.name} initialized successfully.`);
+
   return authInstance;
 }

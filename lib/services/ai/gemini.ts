@@ -4,17 +4,16 @@ import { IAIService } from './interface';
 
 export class GeminiAIService extends BaseService implements IAIService {
   name = 'GeminiAIService';
+  private apiKey: string = '';
   // private model: any;
 
   validateConfig(): void {
-    this.requireConfig('GEMINI_API_KEY', 'ERR_AI_GEMINI_KEY_MISSING');
+    this.apiKey = this.requireConfig('GEMINI_API_KEY', 'ERR_AI_GEMINI_KEY_MISSING');
   }
 
   async generateText(prompt: string): Promise<string> {
-    this.requireConfig('GEMINI_API_KEY', 'ERR_AI_GEMINI_KEY_MISSING');
-
     // TODO: Initialize GoogleGenerativeAI with apiKey and generate content
-    // const genAI = new GoogleGenerativeAI(apiKey);
+    // const genAI = new GoogleGenerativeAI(this.apiKey);
     // const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
     console.log(`[GeminiAIService] Generating text for prompt: ${prompt.substring(0, 50)}...`);

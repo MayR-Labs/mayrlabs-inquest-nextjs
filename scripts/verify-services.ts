@@ -1,5 +1,8 @@
 import { ServiceConfigError } from '@/lib/errors/ServiceConfigError';
 import { getDatabaseService, getAIService, getAuthService } from '../lib/services';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 try {
   console.log('Verifying Services...\n');
