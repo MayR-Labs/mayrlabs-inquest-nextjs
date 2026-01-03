@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MayR Labs InQuest
+
+**MayR Labs InQuest** is a personal, AI-assisted form management system. It bridges the gap between human thought and structured digital data collection by using AI to generate form schemas from natural language questions.
+
+For a deep dive into the philosophy and purpose, read [ABOUT.md](./ABOUT.md).
+
+## Documentation
+
+- [**ABOUT.md**](./ABOUT.md): Project overview, philosophy, and high-level architecture.
+- [**ROADMAP.md**](./ROADMAP.md): Development phases and future plans.
+- [**STYLE_GUIDE.md**](./STYLE_GUIDE.md): Coding standards, file structure, and architectural patterns.
+- [**AI_INSTRUCTIONS.md**](./AI_INSTRUCTIONS.md): Guidelines for AI assistants working on this codebase.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js (LTS)
+- npm / yarn / pnpm
+
+### Installation
+
+1.  Clone the repository.
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
+3.  Prepare Husky hooks:
+    ```bash
+    npm run prepare
+    ```
+
+### Running Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project follows a strict feature-based directory structure with separation of concerns.
 
-## Learn More
+- `app/`: Next.js App Router (Routes & Pages).
+- `components/`: Shared UI components.
+- `lib/`: Shared utilities, hooks, and types.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Please refer to `STYLE_GUIDE.md` before contributing.
