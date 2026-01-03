@@ -4,10 +4,10 @@ This document outlines the development phases for **MayR Labs InQuest**.
 
 ## Phase 1: Foundation (Current)
 
-- [ ] **Architecture Setup**: Establish strict Separation of Concerns (Server/Client/Hooks).
-- [ ] **Data Model Design**: Define the formal schema for Forms, Questions, and Responses.
-- [ ] **Authentication**: Implement Google OAuth via Firebase.
-- [ ] **Infrastructure**: Setup basic persistence (Database) and API routes.
+- [x] **Architecture Setup**: Establish strict Separation of Concerns (Server/Client/Hooks).
+- [x] **Data Model Design**: Define the formal schema for Forms, Questions, and Responses.
+- [x] **Authentication**: Implement Google OAuth via Firebase.
+- [x] **Infrastructure**: Setup basic persistence (Database) and API routes.
 
 ## Phase 2: Core Form Engine
 
