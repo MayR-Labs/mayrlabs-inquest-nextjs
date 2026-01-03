@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "npm run services:verify",
     "dev": "next dev",
     "prebuild": "npx tsx scripts/prebuild.ts",
     "build": "next build",
