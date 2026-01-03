@@ -38,6 +38,24 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser.
 
+## Service Configuration
+
+This project is designed to be self-hostable and agnostic to specific backing services. You can Configure which services to use via environment variables.
+
+1.  Copy `.env.example` to `.env`.
+2.  Set the `*_PROVIDER` variables to your preferred services (e.g., `DB_PROVIDER=mongodb`).
+3.  Fill in the required API keys and connection strings for your selected providers.
+
+Refer to `.env.example` for the full list of supported providers and required variables.
+
+### Troubleshooting Boot Errors
+
+If the application fails to start, check the `errorCode` displayed on the error page:
+
+- `ERR_DB_*`: Database configuration missing (e.g., `ERR_DB_MONGO_URI_MISSING`).
+- `ERR_AI_*`: AI service configuration missing.
+- `ERR_AUTH_*`: Authentication service configuration missing.
+
 ## Project Structure
 
 This project follows a strict feature-based directory structure with separation of concerns.
