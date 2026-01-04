@@ -21,7 +21,9 @@ export interface IDatabaseService extends IService {
   updateForm(id: string, updates: Partial<IForm>): Promise<IForm | null>;
 
   // Response Operations
-  createResponse(response: Omit<IFormResponse, '_id' | 'submitted_at'>): Promise<IFormResponse>;
+  createResponse(
+    response: Omit<IFormResponse, '_id' | 'created_at' | 'updated_at'>,
+  ): Promise<IFormResponse>;
   getResponsesForForm(formId: string): Promise<IFormResponse[]>;
 
   // Cleanup Operations

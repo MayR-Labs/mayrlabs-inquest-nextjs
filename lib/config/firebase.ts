@@ -3,7 +3,6 @@ export interface AuthConfig {
     google: boolean;
     emailPassword: boolean;
   };
-  redirectAfterLogin: string;
 }
 
 export const authConfig: AuthConfig = {
@@ -11,5 +10,4 @@ export const authConfig: AuthConfig = {
     google: true,
     emailPassword: true,
   },
-  redirectAfterLogin: '/dashboard',
 };

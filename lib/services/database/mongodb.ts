@@ -85,7 +85,7 @@ export class MongoDBDatabaseService extends BaseService implements IDatabaseServ
   // --- Response Operations ---
 
   async createResponse(
-    responseData: Omit<IFormResponse, '_id' | 'submitted_at'>,
+    responseData: Omit<IFormResponse, '_id' | 'created_at' | 'updated_at'>,
   ): Promise<IFormResponse> {
     const response = await MongooseFormResponse.create(responseData);
     return response.toObject();

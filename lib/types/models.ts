@@ -30,5 +30,6 @@ export interface IFormResponse {
   form_id: string | IForm;
   user_id: string | IUser;
   answers: Record<string, unknown>;
-  submitted_at: Date;
+  created_at: Date;
+  updated_at: Date;
 }
