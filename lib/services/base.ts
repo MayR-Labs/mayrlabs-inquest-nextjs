@@ -10,9 +10,9 @@ export abstract class BaseService implements IService {
 
   protected requireConfig(key: string, errorCode: string): string {
     const value = process.env[key];
-    if (!value) {
-      throw new ServiceConfigError(this.name, key, errorCode);
-    }
+
+    if (!value) throw new ServiceConfigError(this.name, key, errorCode);
+
     return value;
   }
 }

@@ -3,11 +3,12 @@
 import { FirebaseAuthProvider } from './auth/firebase-auth-provider';
 import { NullAuthProvider } from './auth/null-auth-provider';
 import { useAuth } from './auth/auth-context';
+import { env } from '@/lib/env';
 
 export { useAuth };
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const provider = process.env.NEXT_PUBLIC_AUTH_PROVIDER;
+  const provider = env.NEXT_PUBLIC_AUTH_PROVIDER;
 
   if (provider === 'firebase') {
     return <FirebaseAuthProvider>{children}</FirebaseAuthProvider>;

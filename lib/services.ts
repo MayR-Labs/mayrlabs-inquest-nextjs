@@ -1,3 +1,4 @@
+import { env } from '@/lib/env';
 import { IDatabaseService } from './services/database/interface';
 import { MongoDBDatabaseService } from './services/database/mongodb';
 import { IAIService } from './services/ai/interface';
@@ -13,7 +14,7 @@ let authInstance: IAuthService | null = null;
 export function getDatabaseService(): IDatabaseService {
   if (dbInstance) return dbInstance;
 
-  const provider = process.env.NEXT_PUBLIC_DB_PROVIDER;
+  const provider = env.NEXT_PUBLIC_DB_PROVIDER;
 
   if (!provider) {
     throw new ServiceConfigError(
@@ -45,7 +46,7 @@ export function getDatabaseService(): IDatabaseService {
 export function getAIService(): IAIService {
   if (aiInstance) return aiInstance;
 
-  const provider = process.env.NEXT_PUBLIC_AI_PROVIDER;
+  const provider = env.NEXT_PUBLIC_AI_PROVIDER;
 
   if (!provider) {
     throw new ServiceConfigError('AIFactory', 'NEXT_PUBLIC_AI_PROVIDER', 'ERR_AI_PROVIDER_MISSING');
@@ -79,7 +80,7 @@ export function getAIService(): IAIService {
 export function getAuthService(): IAuthService {
   if (authInstance) return authInstance;
 
-  const provider = process.env.NEXT_PUBLIC_AUTH_PROVIDER;
+  const provider = env.NEXT_PUBLIC_AUTH_PROVIDER;
 
   if (!provider) {
     throw new ServiceConfigError(

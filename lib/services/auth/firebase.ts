@@ -1,6 +1,7 @@
 import { BaseService } from '@/lib/services/base';
 import { IAuthService } from './interface';
 import * as admin from 'firebase-admin';
+import { env } from '@/lib/env';
 
 export class FirebaseAuthService extends BaseService implements IAuthService {
   name = 'FirebaseAuthService';
@@ -25,9 +26,9 @@ export class FirebaseAuthService extends BaseService implements IAuthService {
 
     // Initialize admin app if not already initialized
     if (!admin.apps.length) {
-      if (process.env.FIREBASE_SERVICE_ACCOUNT_KEY) {
+      if (env.FIREBASE_SERVICE_ACCOUNT_KEY) {
         try {
-          const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
+          const serviceAccount = JSON.parse(env.FIREBASE_SERVICE_ACCOUNT_KEY);
           admin.initializeApp({
             credential: admin.credential.cert(serviceAccount),
           });
