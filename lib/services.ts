@@ -13,10 +13,14 @@ let authInstance: IAuthService | null = null;
 export function getDatabaseService(): IDatabaseService {
   if (dbInstance) return dbInstance;
 
-  const provider = process.env.DB_PROVIDER;
+  const provider = process.env.NEXT_PUBLIC_DB_PROVIDER;
 
   if (!provider) {
-    throw new ServiceConfigError('DatabaseFactory', 'DB_PROVIDER', 'ERR_DB_PROVIDER_MISSING');
+    throw new ServiceConfigError(
+      'DatabaseFactory',
+      'NEXT_PUBLIC_DB_PROVIDER',
+      'ERR_DB_PROVIDER_MISSING',
+    );
   }
 
   switch (provider) {
@@ -26,7 +30,7 @@ export function getDatabaseService(): IDatabaseService {
     default:
       throw new ServiceConfigError(
         'DatabaseFactory',
-        'DB_PROVIDER',
+        'NEXT_PUBLIC_DB_PROVIDER',
         `ERR_DB_PROVIDER_NOT_SUPPORTED: ${provider}`,
       );
   }
@@ -41,10 +45,10 @@ export function getDatabaseService(): IDatabaseService {
 export function getAIService(): IAIService {
   if (aiInstance) return aiInstance;
 
-  const provider = process.env.AI_PROVIDER;
+  const provider = process.env.NEXT_PUBLIC_AI_PROVIDER;
 
   if (!provider) {
-    throw new ServiceConfigError('AIFactory', 'AI_PROVIDER', 'ERR_AI_PROVIDER_MISSING');
+    throw new ServiceConfigError('AIFactory', 'NEXT_PUBLIC_AI_PROVIDER', 'ERR_AI_PROVIDER_MISSING');
   }
 
   switch (provider) {
@@ -54,13 +58,13 @@ export function getAIService(): IAIService {
     case 'openai':
       throw new ServiceConfigError(
         'AIFactory',
-        'AI_PROVIDER',
+        'NEXT_PUBLIC_AI_PROVIDER',
         'ERR_AI_PROVIDER_NOT_IMPLEMENTED_YET',
       );
     default:
       throw new ServiceConfigError(
         'AIFactory',
-        'AI_PROVIDER',
+        'NEXT_PUBLIC_AI_PROVIDER',
         `ERR_AI_PROVIDER_NOT_SUPPORTED: ${provider}`,
       );
   }
@@ -75,10 +79,14 @@ export function getAIService(): IAIService {
 export function getAuthService(): IAuthService {
   if (authInstance) return authInstance;
 
-  const provider = process.env.AUTH_PROVIDER;
+  const provider = process.env.NEXT_PUBLIC_AUTH_PROVIDER;
 
   if (!provider) {
-    throw new ServiceConfigError('AuthFactory', 'AUTH_PROVIDER', 'ERR_AUTH_PROVIDER_MISSING');
+    throw new ServiceConfigError(
+      'AuthFactory',
+      'NEXT_PUBLIC_AUTH_PROVIDER',
+      'ERR_AUTH_PROVIDER_MISSING',
+    );
   }
 
   switch (provider) {
@@ -88,13 +96,13 @@ export function getAuthService(): IAuthService {
     case 'supabase':
       throw new ServiceConfigError(
         'AuthFactory',
-        'AUTH_PROVIDER',
+        'NEXT_PUBLIC_AUTH_PROVIDER',
         'ERR_AUTH_PROVIDER_NOT_IMPLEMENTED_YET',
       );
     default:
       throw new ServiceConfigError(
         'AuthFactory',
-        'AUTH_PROVIDER',
+        'NEXT_PUBLIC_AUTH_PROVIDER',
         `ERR_AUTH_PROVIDER_NOT_SUPPORTED: ${provider}`,
       );
   }

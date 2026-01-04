@@ -8,6 +8,14 @@ const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
   prettier,
+
+  {
+    files: ['**/*.tsx'],
+    rules: {
+      'react/no-unescaped-entities': 'off',
+    },
+  },
+
   // Override default ignores of eslint-config-next.
   globalIgnores([
     // Default ignores of eslint-config-next:
