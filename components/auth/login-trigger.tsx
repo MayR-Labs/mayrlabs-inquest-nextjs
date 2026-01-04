@@ -12,7 +12,7 @@ export function LoginTrigger() {
         onClick={() => setIsOpen(true)}
         className="rounded-full bg-blue-600 px-6 py-2 font-medium text-white transition hover:bg-blue-700"
       >
-        Login
+        Get Started
       </button>
 
       {isOpen && (
