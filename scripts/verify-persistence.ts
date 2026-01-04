@@ -1,6 +1,5 @@
-// scripts/verify-persistence.ts
-import { getDatabaseService } from '../lib/services';
 import dotenv from 'dotenv';
+import { getDatabaseService } from '@/lib/services';
 
 dotenv.config();
 
