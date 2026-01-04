@@ -12,6 +12,8 @@ import { IUser } from '@/lib/types/models';
 export async function syncUser(
   email: string | null | undefined,
   providerDetails: Record<string, unknown>,
+  displayName?: string | null,
+  photoURL?: string | null,
 ): Promise<IUser | null> {
   if (!email) {
     console.error('syncUser: email is missing');
@@ -32,9 +34,14 @@ export async function syncUser(
       if (hasChanges) {
         console.log(`syncUser: Updating provider details for ${email}`);
 
-        const updatedUser = await db.updateUser(existingUser._id!.toString(), {
+        const updatePayload: Partial<IUser> = {
           provider_details: { ...currentDetails, ...providerDetails },
-        });
+        };
+
+        if (displayName) updatePayload.display_name = displayName;
+        if (photoURL) updatePayload.photo_url = photoURL;
+
+        const updatedUser = await db.updateUser(existingUser._id!.toString(), updatePayload);
 
         if (updatedUser) return JSON.parse(JSON.stringify(updatedUser));
 
@@ -50,6 +57,8 @@ export async function syncUser(
       email,
       provider_details: providerDetails,
       role: 'user',
+      display_name: displayName || undefined,
+      photo_url: photoURL || undefined,
     });
 
     return JSON.parse(JSON.stringify(newUser));

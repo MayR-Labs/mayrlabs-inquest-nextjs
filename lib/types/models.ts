@@ -6,6 +6,8 @@ export interface IUser {
   email: string;
   provider_details: Record<string, unknown>; // e.g., { firebase: { uid: '...', ... } }
   role: UserRole;
+  display_name?: string;
+  photo_url?: string;
   last_activity: Date;
   onboarded_at?: Date;
   created_at: Date;
