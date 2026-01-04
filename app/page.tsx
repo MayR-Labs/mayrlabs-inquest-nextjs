@@ -1,24 +1,40 @@
 'use client';
 
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '@/components/providers/auth-provider';
 import { AdminDashboard } from '@/components/dashboard/admin-dashboard';
 import { UserDashboard } from '@/components/dashboard/user-dashboard';
-import { WelcomeScreen } from '@/components/home/welcome-screen';
+import { Header } from '@/components/layout/header';
+import { Footer } from '@/components/layout/footer';
 
 export default function Home() {
   const { user, status } = useAuth();
+  const router = useRouter();
 
-  if (status === 'loading' || status === 'updating') {
+  useEffect(() => {
+    if (status === 'success' && !user) {
+      router.push('/get-started');
+    }
+  }, [user, status, router]);
+
+  if (status === 'loading' || status === 'updating' || !user) {
     return (
-      <div className="flex min-h-screen items-center justify-center dark:bg-black">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-600 border-t-transparent"></div>
+      <div className="bg-background flex min-h-screen items-center justify-center">
+        <div className="border-primary h-8 w-8 animate-spin rounded-full border-4 border-t-transparent"></div>
       </div>
     );
   }
 
-  if (!user) return <WelcomeScreen />;
+  return (
+    <div className="bg-background flex min-h-screen flex-col">
+      <Header />
 
-  if (user.role === 'admin') return <AdminDashboard />;
+      <main className="flex-1">
+        {user.role === 'admin' ? <AdminDashboard /> : <UserDashboard />}
+      </main>
 
-  return <UserDashboard />;
+      <Footer />
+    </div>
+  );
 }

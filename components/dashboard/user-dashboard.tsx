@@ -1,21 +1,13 @@
 'use client';
 
 import { auth } from '@/lib/firebase-client';
-import { signOut } from 'firebase/auth';
-
 export function UserDashboard() {
   return (
-    <div className="bg-background min-h-screen p-8">
+    <div className="bg-background min-h-[calc(100vh-4rem)] p-8">
       <div className="mx-auto max-w-6xl">
-        <header className="mb-8 flex items-center justify-between">
+        <div className="mb-8">
           <h1 className="text-3xl font-bold">My Dashboard</h1>
-          <button
-            onClick={() => signOut(auth)}
-            className="border-border bg-card text-card-foreground hover:bg-muted rounded-lg border px-4 py-2 text-sm font-medium"
-          >
-            Sign Out
-          </button>
-        </header>
+        </div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {/* Placeholder cards */}
