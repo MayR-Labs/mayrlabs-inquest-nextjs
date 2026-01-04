@@ -6,6 +6,8 @@ const UserSchema = new Schema<IUser>(
     email: { type: String, required: true, unique: true, index: true },
     provider_details: { type: Map, of: Schema.Types.Mixed, default: {} },
     role: { type: String, enum: ['user', 'admin'], default: 'user' },
+    display_name: { type: String },
+    photo_url: { type: String },
     last_activity: { type: Date, default: Date.now },
     onboarded_at: { type: Date },
   },

@@ -21,12 +21,15 @@ export const FirebaseAuthProvider = ({ children }: { children: React.ReactNode }
         setAuthUser(JSON.parse(JSON.stringify(firebaseUser)));
 
         try {
-          const syncedUser = await syncUser(firebaseUser.email, {
-            uid: firebaseUser.uid,
-            displayName: firebaseUser.displayName,
-            photoURL: firebaseUser.photoURL,
-            providerId: firebaseUser.providerData[0]?.providerId,
-          });
+          const syncedUser = await syncUser(
+            firebaseUser.email,
+            {
+              uid: firebaseUser.uid,
+              providerId: firebaseUser.providerData[0]?.providerId,
+            },
+            firebaseUser.displayName,
+            firebaseUser.photoURL,
+          );
 
           if (syncedUser) {
             setDbUser(syncedUser);
