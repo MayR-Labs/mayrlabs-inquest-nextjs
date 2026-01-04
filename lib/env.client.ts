@@ -1,22 +1,5 @@
 import { z } from 'zod';
 
-const serverSchema = z.object({
-  FIREBASE_SERVICE_ACCOUNT_KEY: z.string().optional(),
-
-  GEMINI_API_KEY: z.string().optional(),
-
-  MONGODB_URI: z.string().optional(),
-  MONGODB_DBNAME: z.string().optional(),
-
-  OPENAI_API_KEY: z.string().optional(),
-
-  SUPABASE_URL: z.string().optional(),
-  SUPABASE_KEY: z.string().optional(),
-
-  // Private Server
-  NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
-});
-
 const clientSchema = z.object({
   // Provider Config
   NEXT_PUBLIC_AI_PROVIDER: z.enum(['gemini', 'openai']).default('gemini'),
@@ -34,10 +17,6 @@ const clientSchema = z.object({
 
 // Explicitly construct the runtime object so Next.js can inline values
 const runtimeEnv = {
-  // Server Side
-  ...process.env,
-
-  // Client Side need to be defined
   NEXT_PUBLIC_AI_PROVIDER: process.env.NEXT_PUBLIC_AI_PROVIDER,
   NEXT_PUBLIC_AUTH_PROVIDER: process.env.NEXT_PUBLIC_AUTH_PROVIDER,
   NEXT_PUBLIC_DB_PROVIDER: process.env.NEXT_PUBLIC_DB_PROVIDER,
@@ -49,8 +28,4 @@ const runtimeEnv = {
   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
 };
 
-const envSchema = serverSchema.merge(clientSchema);
-
-export const env = envSchema.parse(runtimeEnv);
-
-export type Env = z.infer<typeof envSchema>;
+export const clientEnv = clientSchema.parse(runtimeEnv);

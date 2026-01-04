@@ -2,10 +2,10 @@
 
 import { FirebaseLoginInterface } from './firebase-login-interface';
 import { NullLoginInterface } from './null-login-interface';
-import { env } from '@/lib/env';
+import { clientEnv } from '@/lib/env.client';
 
 export function LoginInterface() {
-  const provider = env.NEXT_PUBLIC_AUTH_PROVIDER;
+  const provider = clientEnv.NEXT_PUBLIC_AUTH_PROVIDER;
 
   if (provider === 'firebase') return <FirebaseLoginInterface />;
 
