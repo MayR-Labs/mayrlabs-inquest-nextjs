@@ -1,4 +1,4 @@
-import { BaseService } from '../base';
+import { BaseService } from '@/lib/services/base';
 import { IAIService } from './interface';
 // import { GoogleGenerativeAI } from '@google/generative-ai';
 

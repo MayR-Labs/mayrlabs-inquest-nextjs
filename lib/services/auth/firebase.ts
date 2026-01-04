@@ -1,4 +1,4 @@
-import { BaseService } from '../base';
+import { BaseService } from '@/lib/services/base';
 import { IAuthService } from './interface';
 import * as admin from 'firebase-admin';
 

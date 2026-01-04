@@ -1,15 +1,15 @@
 import mongoose, { Schema, Model } from 'mongoose';
-import { IFormResponse } from '../types/models';
+import { IFormResponse } from '@/lib/types/models';
 
 const FormResponseSchema = new Schema<IFormResponse>(
   {
     form_id: { type: Schema.Types.ObjectId, ref: 'Form', required: true },
     user_id: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     answers: { type: Schema.Types.Mixed, required: true },
-    submitted_at: { type: Date, default: Date.now },
+    submitted_at: { type: Date, default: Date.now }, // @ai: We should just opt to use the createdAt field from mongoose instead
   },
   {
-    timestamps: false, // We use submitted_at explicitly, but mongoose does validation
+    timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
   },
 );
 

@@ -1,4 +1,4 @@
-import { IService } from '../base';
+import { IService } from '@/lib/services/base';
 
 export interface IAIService extends IService {
   name: string;

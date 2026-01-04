@@ -1,5 +1,5 @@
 import mongoose, { Schema, Model } from 'mongoose';
-import { IForm } from '../types/models';
+import { IForm } from '@/lib/types/models';
 
 const FormSchema = new Schema<IForm>(
   {

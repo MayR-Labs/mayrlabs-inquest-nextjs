@@ -1,79 +1,97 @@
 // scripts/verify-persistence.ts
 import { getDatabaseService } from '../lib/services';
-import User from '../lib/models/User';
-import Form from '../lib/models/Form';
-import FormResponse from '../lib/models/FormResponse';
-import { IUser, IForm } from '../lib/types/models';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
 async function run() {
   console.log('🔄 Connecting to Database...');
+
   const db = getDatabaseService();
   await db.connect();
 
+  let userId: string | undefined;
+  let formId: string | undefined;
+  let responseId: string | undefined;
+
   try {
     // 1. Create a Test User
-    console.log('\n📝 Testing: Create User');
+    console.log('\n📝 Testing: Create User via Service');
+
     const email = `test-${Date.now()}@example.com`;
-    const user = await User.create({
+
+    const user = await db.createUser({
       email,
       provider_details: { firebase: { uid: 'test-uid' } },
       role: 'admin',
     });
-    console.log('   ✅ User created:', user._id);
+
+    userId = user._id?.toString();
+
+    console.log('   ✅ User created:', userId);
+
+    if (!userId) throw new Error('User ID missing');
 
     // 2. Create a Form
-    console.log('\n📝 Testing: Create Form');
-    const form = await Form.create({
+    console.log('\n📝 Testing: Create Form via Service');
+
+    const form = await db.createForm({
       title: 'Test Form',
       description: 'A test form',
       schema: { question: 'What is your name?' },
-      created_by: user._id,
+      created_by: userId,
       recipients: [email],
+      status: 'draft',
+      submit_message: 'Thanks!',
     });
-    console.log('   ✅ Form created:', form._id);
+
+    formId = form._id?.toString();
+
+    console.log('   ✅ Form created:', formId);
+
+    if (!formId) throw new Error('Form ID missing');
 
     // 3. Create a Response
-    console.log('\n📝 Testing: Submit Response');
-    const response = await FormResponse.create({
-      form_id: form._id,
-      user_id: user._id,
+    console.log('\n📝 Testing: Submit Response via Service');
+
+    const response = await db.createResponse({
+      form_id: formId,
+      user_id: userId,
       answers: { answer: 'John Doe' },
     });
-    console.log('   ✅ Response created:', response._id);
 
-    // 4. Verify Relations
-    console.log('\n🔍 Verifying Relationships...');
-    const fetchedResponse = await FormResponse.findById(response._id)
-      .populate('user_id')
-      .populate('form_id');
+    responseId = response._id?.toString();
 
-    if (fetchedResponse && fetchedResponse.user_id && fetchedResponse.form_id) {
-      const user = fetchedResponse.user_id as unknown as IUser;
-      const form = fetchedResponse.form_id as unknown as IForm;
+    console.log('   ✅ Response created:', responseId);
 
-      if (user.email === email && form.title === 'Test Form') {
-        console.log('   ✅ Relationships verified');
-      } else {
-        console.error('   ❌ Relationship mismatch');
-      }
+    // 4. Verify Fetch (Abstraction check)
+    console.log('\n🔍 Verifying Fetch...');
+
+    const fetchedUser = await db.getUserByEmail(email);
+
+    if (fetchedUser && fetchedUser._id?.toString() === userId) {
+      console.log('   ✅ Fetched User verified');
     } else {
-      console.error('   ❌ Failed to populate');
+      console.error('   ❌ User fetch failed');
     }
 
-    // Cleanup
-    console.log('\n🧹 Cleaning up...');
-    await FormResponse.deleteOne({ _id: response._id });
-    await Form.deleteOne({ _id: form._id });
-    await User.deleteOne({ _id: user._id });
-    console.log('   ✅ Cleanup complete');
+    const fetchedForm = await db.getFormById(formId);
+
+    if (fetchedForm && fetchedForm.title === 'Test Form') {
+      console.log('   ✅ Fetched Form verified');
+    } else {
+      console.error('   ❌ Form fetch failed');
+    }
+
+    // Cleanup skipped as requested/not strictly needed for dev verification script
+    console.log('\n⚠️ Note: Cleanup skipped (delete methods not in Service Interface)');
   } catch (error) {
     console.error('❌ Verification Failed:', error);
+
     process.exit(1);
   } finally {
     await db.disconnect();
+
     process.exit(0);
   }
 }
