@@ -10,17 +10,17 @@ export function LoginTrigger() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="rounded-full bg-blue-600 px-6 py-2 font-medium text-white transition hover:bg-blue-700"
+        className="bg-primary text-primary-foreground rounded-full px-6 py-2 font-medium transition hover:opacity-90"
       >
         Get Started
       </button>
 
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm">
-          <div className="relative w-full max-w-md rounded-2xl bg-white p-6 shadow-xl dark:bg-zinc-900">
+          <div className="bg-card text-card-foreground relative w-full max-w-md rounded-2xl p-6 shadow-xl">
             <button
               onClick={() => setIsOpen(false)}
-              className="absolute top-4 right-4 text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200"
+              className="text-muted-foreground hover:text-foreground absolute top-4 right-4"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +38,7 @@ export function LoginTrigger() {
               </svg>
             </button>
 
-            <h2 className="mb-6 text-center text-2xl font-bold dark:text-white">Sign In</h2>
+            <h2 className="mb-6 text-center text-2xl font-bold">Sign In</h2>
             <LoginInterface />
           </div>
         </div>

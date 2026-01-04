@@ -37,12 +37,12 @@ export function WelcomeScreen() {
   const { welcome } = siteConfig;
 
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-50">
+    <div className="bg-background text-foreground relative flex min-h-screen flex-col items-center justify-center overflow-hidden">
       {/* Background Gradients */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-blue-500/20 blur-3xl" />
-        <div className="absolute top-1/2 right-0 h-96 w-96 rounded-full bg-purple-500/10 blur-3xl" />
-        <div className="absolute -bottom-40 left-1/3 h-96 w-96 rounded-full bg-indigo-500/20 blur-3xl" />
+        <div className="bg-primary/20 absolute -top-40 -left-40 h-96 w-96 rounded-full blur-3xl" />
+        <div className="bg-accent/10 absolute top-1/2 right-0 h-96 w-96 rounded-full blur-3xl" />
+        <div className="bg-primary/20 absolute -bottom-40 left-1/3 h-96 w-96 rounded-full blur-3xl" />
       </div>
 
       <div className="relative z-10 w-full max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
@@ -55,7 +55,7 @@ export function WelcomeScreen() {
           {/* Badge */}
           <motion.div
             variants={itemVars}
-            className="mb-6 rounded-full border border-blue-100 bg-blue-50 px-4 py-1.5 text-sm font-medium text-blue-600 dark:border-blue-900/30 dark:bg-blue-900/10 dark:text-blue-400"
+            className="border-primary/20 bg-primary/10 text-primary mb-6 rounded-full border px-4 py-1.5 text-sm font-medium"
           >
             {welcome.hero.badge}
           </motion.div>
@@ -66,7 +66,7 @@ export function WelcomeScreen() {
             className="mb-4 text-5xl font-bold tracking-tight sm:text-7xl"
           >
             {welcome.hero.title}{' '}
-            <span className="bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
+            <span className="from-primary to-accent bg-gradient-to-r bg-clip-text text-transparent">
               {welcome.hero.titleGradient}
             </span>
           </motion.h1>
@@ -74,7 +74,7 @@ export function WelcomeScreen() {
           {/* Description */}
           <motion.p
             variants={itemVars}
-            className="mb-10 max-w-2xl text-lg text-zinc-600 sm:text-xl dark:text-zinc-400"
+            className="text-muted-foreground mb-10 max-w-2xl text-lg sm:text-xl"
           >
             {welcome.hero.description}
           </motion.p>
@@ -96,13 +96,13 @@ export function WelcomeScreen() {
                 key={index}
                 variants={itemVars}
                 whileHover={{ y: -5 }}
-                className="group relative overflow-hidden rounded-2xl border border-zinc-200 bg-white/50 p-6 shadow-sm backdrop-blur-sm transition-colors hover:border-blue-200 hover:bg-white/80 dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-blue-800 dark:hover:bg-zinc-900/80"
+                className="group border-border bg-card/50 hover:border-primary/50 hover:bg-card/80 relative overflow-hidden rounded-2xl border p-6 shadow-sm backdrop-blur-sm transition-colors"
               >
-                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition-colors group-hover:bg-blue-600 group-hover:text-white dark:bg-blue-900/20 dark:text-blue-400">
+                <div className="bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl transition-colors">
                   {iconMap[feature.icon as keyof typeof iconMap]}
                 </div>
-                <h3 className="mb-2 text-lg font-semibold dark:text-zinc-100">{feature.title}</h3>
-                <p className="text-sm text-zinc-500 dark:text-zinc-400">{feature.description}</p>
+                <h3 className="dark:text-foreground mb-2 text-lg font-semibold">{feature.title}</h3>
+                <p className="text-muted-foreground text-sm">{feature.description}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -110,7 +110,7 @@ export function WelcomeScreen() {
       </div>
 
       {/* Footer copyright */}
-      <div className="absolute bottom-4 text-xs text-zinc-400">
+      <div className="text-muted-foreground absolute bottom-4 text-xs">
         &copy; {siteConfig.copyright.year} {siteConfig.copyright.organization}
       </div>
     </div>

@@ -45,7 +45,7 @@ export function FirebaseLoginInterface() {
       {authConfig.providers.google && (
         <button
           onClick={handleGoogleLogin}
-          className="flex w-full items-center justify-center gap-2 rounded-lg border border-zinc-200 bg-white px-4 py-2 font-medium text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700"
+          className="border-border bg-card text-card-foreground hover:bg-muted flex w-full items-center justify-center gap-2 rounded-lg border px-4 py-2 font-medium"
         >
           <svg className="h-5 w-5" viewBox="0 0 24 24">
             <path
@@ -71,35 +71,31 @@ export function FirebaseLoginInterface() {
 
       {authConfig.providers.google && authConfig.providers.emailPassword && (
         <div className="relative flex items-center py-2">
-          <div className="grow border-t border-zinc-200 dark:border-zinc-700"></div>
-          <span className="shrink-0 px-2 text-xs text-zinc-500">OR</span>
-          <div className="grow border-t border-zinc-200 dark:border-zinc-700"></div>
+          <div className="border-border grow border-t"></div>
+          <span className="text-muted-foreground shrink-0 px-2 text-xs">OR</span>
+          <div className="border-border grow border-t"></div>
         </div>
       )}
 
       {authConfig.providers.emailPassword && (
         <form onSubmit={handleEmailAuth} className="flex flex-col gap-4">
           <div>
-            <label className="mb-1 block text-sm font-medium text-zinc-700 dark:text-zinc-300">
-              Email
-            </label>
+            <label className="mb-1 block text-sm font-medium">Email</label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-zinc-900 focus:border-blue-500 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-white"
+              className="border-input bg-background focus:border-primary w-full rounded-lg border px-3 py-2 focus:outline-none"
               required
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-zinc-700 dark:text-zinc-300">
-              Password
-            </label>
+            <label className="mb-1 block text-sm font-medium">Password</label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-zinc-900 focus:border-blue-500 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-white"
+              className="border-input bg-background focus:border-primary w-full rounded-lg border px-3 py-2 focus:outline-none"
               required
             />
           </div>
@@ -108,17 +104,17 @@ export function FirebaseLoginInterface() {
 
           <button
             type="submit"
-            className="w-full rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700"
+            className="bg-primary text-primary-foreground w-full rounded-lg px-4 py-2 font-medium hover:opacity-90"
           >
             {isLogin ? 'Sign In' : 'Create Account'}
           </button>
 
-          <p className="text-center text-sm text-zinc-600 dark:text-zinc-400">
+          <p className="text-muted-foreground text-center text-sm">
             {isLogin ? "Don't have an account? " : 'Already have an account? '}
             <button
               type="button"
               onClick={() => setIsLogin(!isLogin)}
-              className="font-medium text-blue-600 hover:underline"
+              className="text-primary font-medium hover:underline"
             >
               {isLogin ? 'Sign up' : 'Sign in'}
             </button>
