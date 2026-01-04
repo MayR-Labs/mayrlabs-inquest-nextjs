@@ -6,9 +6,9 @@ import { UserDashboard } from '@/components/dashboard/user-dashboard';
 import { WelcomeScreen } from '@/components/home/welcome-screen';
 
 export default function Home() {
-  const { user, loading, isAdmin } = useAuth();
+  const { user, status } = useAuth();
 
-  if (loading) {
+  if (status === 'loading' || status === 'updating') {
     return (
       <div className="flex min-h-screen items-center justify-center dark:bg-black">
         <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-600 border-t-transparent"></div>
@@ -18,7 +18,7 @@ export default function Home() {
 
   if (!user) return <WelcomeScreen />;
 
-  if (isAdmin) return <AdminDashboard />;
+  if (user.role === 'admin') return <AdminDashboard />;
 
   return <UserDashboard />;
 }

@@ -1,21 +1,25 @@
 'use client';
 
 import { createContext, useContext } from 'react';
-import { User } from 'firebase/auth'; // We might want to abstract User type later, but for now Firebase User is fine or we create a generic one
+import { IUser } from '@/lib/types/models';
+import { AuthProviderType, DBProviderType } from '@/lib/types/providers';
 
-// Abstracted User type if we want to be truly provider agnostic,
-// but sticking to Firebase User for now as it's the current implementation detail
-// If we switch providers, we might need a unified User interface.
 export interface AuthContextType {
-  user: User | null; // This might need to be generic if we support non-firebase
-  loading: boolean;
-  isAdmin: boolean;
+  user: IUser | null;
+  dbUser: IUser | null;
+  authUser: Record<string, unknown> | null;
+  auth_provider: AuthProviderType;
+  db_provider: DBProviderType;
+  status: 'loading' | 'updating' | 'success' | 'error';
 }
 
 export const AuthContext = createContext<AuthContextType>({
   user: null,
-  loading: true,
-  isAdmin: false,
+  dbUser: null,
+  authUser: null,
+  auth_provider: 'null',
+  db_provider: 'null',
+  status: 'loading',
 });
 
 export const useAuth = () => useContext(AuthContext);

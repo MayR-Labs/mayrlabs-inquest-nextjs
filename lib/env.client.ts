@@ -2,9 +2,11 @@ import { z } from 'zod';
 
 const clientSchema = z.object({
   // Provider Config
-  NEXT_PUBLIC_AI_PROVIDER: z.enum(['gemini', 'openai']).default('gemini'),
-  NEXT_PUBLIC_AUTH_PROVIDER: z.enum(['firebase', 'supabase']).default('firebase'),
-  NEXT_PUBLIC_DB_PROVIDER: z.enum(['mongodb', 'supabase', 'neon', 'firebase']).default('mongodb'),
+  NEXT_PUBLIC_AI_PROVIDER: z.enum(['gemini', 'openai', 'null']).default('null'),
+  NEXT_PUBLIC_AUTH_PROVIDER: z.enum(['firebase', 'supabase', 'null']).default('null'),
+  NEXT_PUBLIC_DB_PROVIDER: z
+    .enum(['mongodb', 'supabase', 'neon', 'firebase', 'null'])
+    .default('null'),
 
   // Firebase Config
   NEXT_PUBLIC_FIREBASE_API_KEY: z.string().optional(),

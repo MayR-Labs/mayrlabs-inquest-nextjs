@@ -15,7 +15,16 @@ export const NullAuthProvider = ({ children }: { children: React.ReactNode }) =>
   }
 
   return (
-    <AuthContext.Provider value={{ user: null, loading: false, isAdmin: false }}>
+    <AuthContext.Provider
+      value={{
+        user: null,
+        dbUser: null,
+        authUser: null,
+        auth_provider: 'null',
+        db_provider: 'null',
+        status: 'loading',
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

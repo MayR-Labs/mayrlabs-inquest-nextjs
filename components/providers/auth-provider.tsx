@@ -10,9 +10,7 @@ export { useAuth };
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const provider = clientEnv.NEXT_PUBLIC_AUTH_PROVIDER;
 
-  if (provider === 'firebase') {
-    return <FirebaseAuthProvider>{children}</FirebaseAuthProvider>;
-  }
+  if (provider === 'firebase') return <FirebaseAuthProvider>{children}</FirebaseAuthProvider>;
 
   return <NullAuthProvider>{children}</NullAuthProvider>;
 };
