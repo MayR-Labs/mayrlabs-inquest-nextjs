@@ -23,4 +23,9 @@ export interface IDatabaseService extends IService {
   // Response Operations
   createResponse(response: Omit<IFormResponse, '_id' | 'submitted_at'>): Promise<IFormResponse>;
   getResponsesForForm(formId: string): Promise<IFormResponse[]>;
+
+  // Cleanup Operations
+  deleteUser(id: string): Promise<boolean>;
+  deleteForm(id: string): Promise<boolean>;
+  deleteResponse(id: string): Promise<boolean>;
 }

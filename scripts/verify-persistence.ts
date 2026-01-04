@@ -82,8 +82,23 @@ async function run() {
       console.error('   ❌ Form fetch failed');
     }
 
-    // Cleanup skipped as requested/not strictly needed for dev verification script
-    console.log('\n⚠️ Note: Cleanup skipped (delete methods not in Service Interface)');
+    // 5. Cleanup
+    console.log('\n🧹 Cleaning up...');
+
+    if (responseId) {
+      await db.deleteResponse(responseId);
+      console.log('   ✅ Response deleted');
+    }
+
+    if (formId) {
+      await db.deleteForm(formId);
+      console.log('   ✅ Form deleted');
+    }
+
+    if (userId) {
+      await db.deleteUser(userId);
+      console.log('   ✅ User deleted');
+    }
   } catch (error) {
     console.error('❌ Verification Failed:', error);
 

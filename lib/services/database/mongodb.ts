@@ -95,4 +95,21 @@ export class MongoDBDatabaseService extends BaseService implements IDatabaseServ
     const responses = await MongooseFormResponse.find({ form_id: formId }).lean();
     return responses as IFormResponse[];
   }
+
+  // --- Cleanup Operations ---
+
+  async deleteUser(id: string): Promise<boolean> {
+    const result = await MongooseUser.findByIdAndDelete(id);
+    return !!result;
+  }
+
+  async deleteForm(id: string): Promise<boolean> {
+    const result = await MongooseForm.findByIdAndDelete(id);
+    return !!result;
+  }
+
+  async deleteResponse(id: string): Promise<boolean> {
+    const result = await MongooseFormResponse.findByIdAndDelete(id);
+    return !!result;
+  }
 }
